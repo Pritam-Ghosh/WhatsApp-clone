@@ -6,6 +6,8 @@ import { storage } from '../../firebase';
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import ChatPanel from './ChatPanel';
 
+import ChatWindow from './ChatWindow';
+
 function Home({ setLoggedIn }) {
 
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ function Home({ setLoggedIn }) {
 
   }
   return (
-    <>
+    <main className='w-full h-screen bg-[#E3E1DB]'>
       {/* <div>Home</div>
       <input
         type="file"
@@ -51,13 +53,16 @@ function Home({ setLoggedIn }) {
 
 
       {/* home left side */}
+      <div className='bg-[#eff2f5] w-full h-full shadow-md flex'>
    <ChatPanel></ChatPanel>
       {/* <div>Profile</div> */}
 
       {/* home right side  */}
       {/* <div>emtey chat</div>
       <div>indivisual chat</div> */}
-    </>
+      <ChatWindow></ChatWindow>
+      </div>
+    </main>
 
   )
 }

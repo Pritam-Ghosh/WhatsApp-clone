@@ -32,13 +32,18 @@ const createUser = async (userData) => {
   
 }
 
-function Login({ setLoggedIn }) {
+// function Login({ setLoggedIn }) {
+  function Login(){
 
   const navigate = useNavigate();
   //use
-  const {setUserData} = useAuth();
+  const {setUserData,userData} = useAuth();
 
-  
+  if(userData != null){
+    navigate("/")
+    return<> </>
+    
+  }
   const handleLogin = async() => {
     const userData = await signInWithPopup(auth, googleProvider);
     console.log('User Info:', userData.user); // User information
@@ -49,12 +54,12 @@ function Login({ setLoggedIn }) {
   const userObject =userData.user
   const {uid,photoURL, displayName ,email} = userObject;
   setUserData({
-    uid,
+    id: uid,
     profilePhoto: photoURL, // Make sure you are passing the correct data
     name: displayName,
     email: email
   });
-    setLoggedIn(true)
+    // setLoggedIn(true)
     navigate('/');
   }
 
