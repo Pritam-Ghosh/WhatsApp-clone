@@ -1,11 +1,15 @@
 import { MessageSquareText, Plus, SendHorizontal } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { db } from '../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 function ChatWindow() {
   const [msg, setMsg] = useState();
+  const [secondUser, setSecondUser] = useState();
 
   const params = useParams();
+  const reciverId = params.chatid;
 
   const handleSendMsg = () => {
     console.log(msg);
@@ -13,8 +17,24 @@ function ChatWindow() {
     setMsg("")
   }
 
+
+  useEffect(() => {
+    //request ,data fetch
+    const getUser = async () => {
+      const docRef = doc(db, "users", reciverId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("secound User",docSnap.data());
+        
+        setSecondUser(docSnap.data());
+      }
+    };
+    getUser()
+  }, [reciverId])
+
   // empty screen
-  if (!params.chatid) {
+  if (!reciverId) {
     return <section className='w-[70vw] h-full flex flex-col gap-4 items-center justify-center'>
       <MessageSquareText className='w-28 h-28 text-gray-400' strokeWidth={1.2}>
       </MessageSquareText>
@@ -33,8 +53,8 @@ function ChatWindow() {
       <div className='h-full w-full bg-chat-bg flex flex-col'>
         {/* topbar */}
         <div className='bg-background flex items-center gap-2 shadow-sm py-2 px-2'>
-          <img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" className='w-9 h-9 rounded-full object-cover' alt="" />
-          <h3> Pritam</h3>
+          <img src={secondUser?.profilePhoto ||"https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"} className='w-9 h-9 rounded-full object-cover' alt="" />
+          <h3> {secondUser?.name}</h3>
         </div>
 
 
