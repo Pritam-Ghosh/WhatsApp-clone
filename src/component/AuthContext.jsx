@@ -11,35 +11,39 @@ export function useAuth() {
 
 export function AuthWrapper({ children }) {
 
-    const [userData,setUserData] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
 
-    useEffect(()=>{
-//check if you have login before ---> for single time login
-onAuthStateChanged(auth,async (currentUser)=>{
-  if (currentUser) {
-    const  docRef = doc(db,"users",currentUser?.uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      const {uid,photoURL, displayName ,email} = docSnap.data();
-  setUserData({
-    id: uid,
-    profilePhoto: photoURL, // Make sure you are passing the correct data
-    name: displayName,
-    email: email
-  });
-    }
-
-    
-  }
-})
-    },[])
-    console.log("currentUser",userData);
+  useEffect(() => {
+    //check if you have login before ---> for single time login
+    onAuthStateChanged(auth, async (currentUser) => {
+      setLoading(true)
+      if (currentUser) {
+        const docRef = doc(db, "users", currentUser?.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const {profilePhoto, name, email } = docSnap.data();
+          console.log("myuser",docSnap.data());
+          setUserData({
+            id: currentUser.uid,
+            profilePhoto, // Make sure you are passing the correct data
+            name,
+            email
+          });
+        }
+   
+        
+      }
+      setLoading(false)
+    })
+  }, [])
+  console.log("currentUser", userData);
   return (
-<AuthContext.Provider value={{userData,setUserData}}>
-{children}
-</AuthContext.Provider>
+    <AuthContext.Provider value={{ userData, setUserData,loading }}>
+      {children}
+    </AuthContext.Provider>
   )
 }
 
-export default  AuthContext
+export default AuthContext

@@ -44,10 +44,10 @@ function ChatPanel() {
 
 <div className='bg-white w-[30vw]'>
 
-        <div className='flex items-center bg-[gray] justify-between '>
+        <div className='flex items-center px-4 border-r gap-2 bg-background justify-between '>
             <div className='bg-background py-2'>
                 <button onClick={() => setShowProfile(true)}>
-                    <img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="" className='h-10 rounded-full object-cover' />
+                    <img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="" className='h-10 rounded-full object-cover ' />
                 </button>
             </div>
             <div className='flex gap-4'>

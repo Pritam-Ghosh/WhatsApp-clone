@@ -36,14 +36,14 @@ const createUser = async (userData) => {
   function Login(){
 
   const navigate = useNavigate();
-  //use
-  const {setUserData,userData} = useAuth();
+  // //use
+  // const {setUserData,userData} = useAuth();
 
-  if(userData != null){
-    navigate("/")
-    return<> </>
+  // if(userData != null){
+  //   navigate("/")
+  //   return<> </>
     
-  }
+  // }
   const handleLogin = async() => {
     const userData = await signInWithPopup(auth, googleProvider);
     console.log('User Info:', userData.user); // User information
@@ -51,14 +51,14 @@ const createUser = async (userData) => {
 
     //saving data
      
-  const userObject =userData.user
-  const {uid,photoURL, displayName ,email} = userObject;
-  setUserData({
-    id: uid,
-    profilePhoto: photoURL, // Make sure you are passing the correct data
-    name: displayName,
-    email: email
-  });
+  // const userObject =userData.user
+  // const {uid,photoURL, displayName ,email} = userObject;
+  // setUserData({
+  //   id: uid,
+  //   profilePhoto: photoURL, // Make sure you are passing the correct data
+  //   name: displayName,
+  //   email: email
+  // });
     // setLoggedIn(true)
     navigate('/');
   }
