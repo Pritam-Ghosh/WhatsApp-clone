@@ -19,7 +19,8 @@ function Profile(props) {
   };
 
   return (
-    <div className="bg-background w-[33.3vw]">
+<div className="bg-background w-[33.3vw] h-screen flex flex-col overflow-y-auto">
+
       <div className="flex bg-primary text-white items-center">
         <button onClick={props.onBack} className="p-2">
           <ArrowLeft className="text-white" />
@@ -27,7 +28,7 @@ function Profile(props) {
         <div>Profile</div>
       </div>
 
-      <div className="flex flex-col gap-8 mt-8 items-center justify-center">
+      <div className="flex flex-col  gap-8 mt-8 items-center justify-center ">
         <label className={`group relative rounded-full overflow-hidden cursor-pointer ${isUploading ? "pointer-events-none" : ""}`}>
           <img src={userData.profilePhoto} alt="Profile" className="h-[160px] w-[160px] object-cover" />
 
@@ -62,6 +63,7 @@ function Profile(props) {
         {/* Name */}
         <div className="flex flex-col bg-white w-full py-4 px-8">
           <label htmlFor="" className="text-sm text-primary-dense mb-2">Your name</label>
+          <div className="flex items-center w-full">
           <input
             type="text"
             value={name}
@@ -69,14 +71,19 @@ function Profile(props) {
             placeholder="update name..."
             onChange={(e) => setName(e.target.value)}
           />
-          <button onClick={() => { handleUpdateName(name) }} className="p-2">
+          <button onClick={() => { handleUpdateName(name) }} className="p-2 hover:bg-gray-200 rounded-full">
             <Check className="w-5 h-5" />
           </button>
+
+          </div>
+         
         </div>
 
         {/* Status */}
         <div className="flex flex-col bg-white w-full py-4 px-8">
           <label htmlFor="" className="text-sm text-primary-dense mb-2">Status</label>
+
+          <div className='flex items-center w-full'>
           <input
             type="text"
             value={status}
@@ -84,9 +91,12 @@ function Profile(props) {
             placeholder="Update status..."
             onChange={(e) => setStatus(e.target.value)}
           />
-          <button onClick={() => handleUpdateStatus(status)} className="p-2">
+          <button onClick={() => handleUpdateStatus(status)} className="p-2 hover:bg-gray-200 rounded-full">
             <Check className="w-5 h-5" />
           </button>
+
+          </div>
+         
         </div>
 
         <button onClick={handleLogout} className="bg-primary p-2 rounded-md text-white">
