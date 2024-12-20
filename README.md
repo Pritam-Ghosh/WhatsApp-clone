@@ -12,7 +12,7 @@ A modern WhatsApp clone built using **React**, **Tailwind CSS**, and **Firebase*
 - **Chat Groups and Direct Messaging**: Support for group chats and one-on-one conversations.
 - **Message Timestamps**: Display when messages were sent.
 - **User Status**: Show user presence (online/offline).
-- **Media Sharing**: Share images, videos, and other media files (optional, if implemented).
+- **Media Sharing**: User profile customization
 - **Search Functionality**: Search through chat history or contacts.
 
 ---
