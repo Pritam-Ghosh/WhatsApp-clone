@@ -9,7 +9,7 @@ A modern WhatsApp clone built using **React**, **Tailwind CSS**, and **Firebase*
 - **Real-Time Messaging**: Send and receive messages instantly using Firebase's real-time database.
 - **Authentication**: User authentication via Firebase Authentication (e.g., email/password, Google Sign-In).
 - **Responsive Design**: Fully responsive UI using Tailwind CSS.
-- **Chat Groups and Direct Messaging**: Support for group chats and one-on-one conversations.
+- **Direct Messaging**: Support for one-on-one conversations.
 - **Message Timestamps**: Display when messages were sent.
 - **User Status**: Show user presence (online/offline).
 - **Media Sharing**: User profile customization
