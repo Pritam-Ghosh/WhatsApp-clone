@@ -21,12 +21,19 @@ const createUser = async (userData) => {
 
 //shorter version-->
   const {uid,photoURL, displayName ,email} = userObject;
+  const date = new Date();
+  const timeStamp = date.toLocaleString("en-US",{
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
   //create user
   await setDoc(doc(db,"users", uid), {
     email,
     profilePhoto:photoURL,
-    name:displayName
+    name:displayName,
+    lastSeen: timeStamp,
   })
   console.log("User Added");
   

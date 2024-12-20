@@ -24,28 +24,30 @@ function Home({ setLoggedIn }) {
     const storageRef = ref(storage, `/profile/${img.name}_${Date.now()}`);
     //storage task
     const uploadTask = uploadBytesResumable(storageRef, img);
-  // upload
-  const progressCB = (data) => {
-    console.log('data: ', data);
-  };
-  
-  const errorCB = (err) => {
-    console.log('err: ', err);
-  };
-  
-  const finishedCB = () => {
-    console.log("upload successful");
-  };
-  
-  uploadTask.on('state_changed', progressCB, errorCB, finishedCB);
-  
+    // upload
+    const progressCB = (data) => {
+      console.log('data: ', data);
+    };
+
+    const errorCB = (err) => {
+      console.log('err: ', err);
+    };
+
+    const finishedCB = () => {
+      console.log("upload successful");
+    };
+
+    uploadTask.on('state_changed', progressCB, errorCB, finishedCB);
+
 
   }
   return (
-    <main className='w-full h-screen bg-[#E3E1DB]'>
-      {/* <div>Home</div>
+    <main className='relative w-full h-screen bg-[#E3E1DB]'>
+      <div className='absolute top-0 h-[130px] bg-primary w-full' />
+      <div className='h-screen absolute w-full p-5' >
+{/* <div>Home</div>
       <input
-        type="file"
+        type="file
         accept="image/png,image/jpeg,image/webp"
         onChange={handleProfile}
       />
@@ -53,15 +55,18 @@ function Home({ setLoggedIn }) {
 
 
       {/* home left side */}
-      <div className='bg-[#eff2f5] w-full h-full shadow-md flex'>
-   <ChatPanel></ChatPanel>
-      {/* <div>Profile</div> */}
+      <div className='bg-[#eff2f5] w-full h-full shadow-md flex overflow-hidden'>
+        <ChatPanel></ChatPanel>
+        {/* <div>Profile</div> */}
 
-      {/* home right side  */}
-      {/* <div>emtey chat</div>
+        {/* home right side  */}
+        {/* <div>emtey chat</div>
       <div>indivisual chat</div> */}
-      <ChatWindow></ChatWindow>
+        <ChatWindow></ChatWindow>
       </div>
+
+      </div>
+      
     </main>
 
   )

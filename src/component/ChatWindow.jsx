@@ -18,6 +18,7 @@ function ChatWindow() {
   const [msgList, setMsgList] = useState([]);
   const { userData } = useAuth();
   const params = useParams();
+  
   const reciverId = params?.chatid;
 
   const chatId =
@@ -78,9 +79,10 @@ function ChatWindow() {
         console.log("Second User:", docSnap.data());
         setSecondUser(docSnap.data());
       }
-    };
 
-    getUser();
+
+    };
+    if (reciverId) getUser();
 
     const msgUnsubscribe = onSnapshot(
       doc(db, "user-chat", chatId),
@@ -125,11 +127,20 @@ function ChatWindow() {
             className="w-9 h-9 rounded-full object-cover"
             alt=""
           />
+
+          <div>
           <h3>{secondUser?.name}</h3>
+          
+          {secondUser?.lastSeen && (
+            <p className="text-xs text-neutral-400"> last seen at {secondUser?.lastSeen}</p>
+          )}
+          </div>
+
+    
         </div>
 
         {/* Message list */}
-        <div className="flex flex-grow flex-col gap-12 p-6 bg-red-100 overflow-y-auto">
+        <div className="flex flex-grow flex-col gap-12 p-6 border-e-orange-400 overflow-y-auto">
           {msgList?.map((m, index) => (
             <div
               key={index}
