@@ -76,7 +76,7 @@ const createUser = async (userData) => {
 
         <div className='flex ml-[200px] pt-6 items-center gap-4 font-medium'>
           <img src="https://whatsapp-clone-826a9.web.app/whatsapp.svg" alt="" className='h-8' />
-          <div className=' text-white '>WHATSAPP</div>
+          <div className=' text-white '>WhatsApp</div>
         </div>
       </div>
 
